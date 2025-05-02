@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TravelDream</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(255, 255, 255, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #030303;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #123458;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #1e90ff;
+    }
+
+    .video-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Top Destinations Section */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefefe;
+    }
+
+    section {
+      padding: 60px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: #111;
+    }
+
+    .section-title p {
+      color: #666;
+    }
+
+    .image-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .image-box {
+      width: 400px;
+      height: 270px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Promo Banner */
+    .promo-banner {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+    
+    .promo-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    
+    .promo-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    
+    .promo-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 1rem;
+    }
+    
+    .promo-content h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    .promo-content p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .promo-btn {
+      background-color: #123458;
+      color: #fff;
+      padding: 10px 24px;
+      text-decoration: none;
+      font-size: 15px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    
+    .promo-btn:hover {
+      background-color:black;
+    }
+
+    /* Packages Section */
+    .packages-section {
+      text-align: center;
+      padding: 50px 20px;
+    }
+  
+    .packages-section h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+  
+    .subtitle {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+  
+    .packages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 35px;
+      justify-content: center;
+    }
+  
+    .package-card {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      padding: 30px;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: slideUp 0.8s forwards;
+    }
+  
+    .package-card img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  
+    .package-card h3 {
+      margin: 20px 0 10px;
+      font-size: 24px;
+    }
+  
+    .package-card p {
+      font-size: 16px;
+      color: #444;
+    }
+  
+    .price {
+      font-weight: bold;
+      font-size: 18px;
+      color:  #123458;
+      margin-top: 10px;
+    }
+  
+    .book-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #123458 ;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  
+    .read-more-container {
+      margin-top: 50px;
+    }
+  
+    .read-more-btn {
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #123458;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.5s; }
+    .delay-3 { animation-delay: 0.8s; }
+  
+    /* Table Section - Updated for black footer */
+    .footer-section {
+      padding: 40px 20px;
+      background: #000;
+      color: white;
+    }
+    
+    .table-container {
+      background-color: transparent;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .table-container h1 {
+      color: white;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    
+    .footer-subtitle {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    
+    th {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 2px solid #444;
+      color: white;
+      font-weight: 600;
+    }
+    
+    td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #444;
+      color: #ccc;
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* More Button */
+    .more-btn {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .more-btn a {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: #123458;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    
+    .more-btn a:hover {
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <span style="color:#1e90ff">Travel</span><strong>Dream</strong>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Destinations</a>
+      <a href="#">Packages</a>
+      <a href="#">Clients</a>
+    </nav>
+  </header>
+
+  <!-- Single Video Hero Section -->
+  <div class="video-container">
+    <video src="13327036-uhd_3840_2160_25fps.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+  <!-- Features Section -->
+  <section style="padding: 60px 40px; background: #f9f9f9;">
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: auto;">
+      <div style="flex: 1; min-width: 250px; max-width: 300px; background: white; padding: 25px 20px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: left; display: flex; gap: 15px; align-items: center;">
+        <img src="https://img.icons8.com/ios/60/3b82f6/globe--v1.png" alt="Globe Icon" width="50" height="50"/>
+        <div>
+          <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Best Destinations</h3>
+          <p style="margin: 0; color: #555;">Discover the most breathtaking places around the globe.</p>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-width: 250px; max-width: 300px; background: white; padding: 25px 20px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: left; display: flex; gap: 15px; align-items: center;">
+        <img src="https://img.icons8.com/ios/60/3b82f6/money--v1.png" alt="Money Icon" width="50" height="50"/>
+        <div>
+          <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Best Price Guaranteed</h3>
+          <p style="margin: 0; color: #555;">Enjoy unbeatable prices on every trip you book.</p>
+        </div>
+      </div>
+
+      <div style="flex: 1; min-width: 250px; max-width: 300px; background: white; padding: 25px 20px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-align: left; display: flex; gap: 15px; align-items: center;">
+        <img src="https://img.icons8.com/ios/60/3b82f6/clock--v1.png" alt="Clock Icon" width="50" height="50"/>
+        <div>
+          <h3 style="margin: 0 0 8px 0; font-size: 18px; color: #111;">Instant Booking</h3>
+          <p style="margin: 0; color: #555;">Secure your dream vacation with just a click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Destinations Section -->
+  <section>
+    <div class="section-title">
+      <h2>Top Destinations</h2>
+      <p>Find out what are the best destinations in the world</p>
+    </div>
+
+    <div class="image-grid">
+      <div class="image-box">
+        <img src="pexels-rachel-claire-7263897.jpg" alt="Destination 1">
+      </div>
+      <div class="image-box">
+        <img src="pexels-chirag-biyani-2660484-9902399.jpg" alt="Destination 2">
+      </div>
+      <div class="image-box">
+        <img src="pexels-yogendras31-14520365.jpg" alt="Destination 3">
+      </div>
+    </div>
+    
+    <div class="more-btn">
+      <a href="#">More</a>
+    </div>
+  </section>
+
+  <!-- Promo Banner Section -->
+  <section class="promo-banner">
+    <video autoplay muted loop playsinline class="promo-video">
+      <source src="7905022-uhd_2160_3840_30fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="promo-content">
+      <h2>Get up to <strong>60% discount</strong></h2>
+      <p>by joining us before summer</p>
+      <a href="#" class="promo-btn">Join Us</a>
+    </div>
+  </section>
+
+  <!-- Featured Packages Section -->
+  <section class="packages-section">
+    <h2>Featured Packages</h2>
+    <p class="subtitle">We will help you find the trip that's perfect for you!</p>
+    <div class="packages">
+      <div class="package-card delay-1">
+        <img src="kerala backwater.jpg" alt="Kerala">
+        <h3>Kerala City Tour</h3>
+        <p>Explore the vibrant culture and stunning landscapes of Kerala's bustling cities.</p>
+        <p class="price">Rs.21000</p>
+        <a href="#" class="book-btn">Book Now</a>
+      </div>
+      <div class="package-card delay-2">
+        <img src="kashmir img.jpg" alt="kashmir">
+        <h3>Kashmir City Tour</h3>
+        <p>Immerse yourself in the rich culture and stunning landscapes of Kashmir.</p>
+        <p class="price">Rs.26000</p>
+        <a href="#" class="book-btn">Book Now</a>
+      </div>
+      <div class="package-card delay-3">
+        <img src="amrister.jpg" alt="amritser">
+        <h3>Golden Temple City Tour</h3>
+        <p>Experience the vibrant blend of culture, cuisine, and cutting-edge architecture.</p>
+        <p class="price">Rs.15000</p>
+        <a href="#" class="book-btn">Book Now</a>
+      </div>
+    </div>
+
+    <div class="read-more-container">
+      <a href="#" class="read-more-btn">Read More</a>
+    </div>
+  </section>
+
+  <!-- Footer Table Section -->
+  <section class="footer-section">
+    <div class="table-container">
+      <h1>TravelDream</h1>
+      <p class="footer-subtitle">Choose your favourite destination.</p>
+      
+      <table>
+        <tr>
+          <th>Project</th>
+          <th>Community</th>
+          <th>Help</th>
+          <th>Others</th>
+        </tr>
+        <tr>
+          <td>Changelog</td>
+          <td>GitHub</td>
+          <td>Support</td>
+          <td>Terms of Service</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td>Issues</td>
+          <td>Troubleshooting</td>
+          <td>Privacy Policy</td>
+        </tr>
+        <tr>
+          <td>License</td>
+          <td>Project</td>
+          <td>Contact Us</td>
+          <td>License</td>
+        </tr>
+        <tr>
+          <td>All Versions</td>
+          <td>Twitter</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    // Animation for image boxes
+    document.addEventListener('DOMContentLoaded', () => {
+      const boxes = document.querySelectorAll('.image-box');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      boxes.forEach(box => observer.observe(box));
+    });
+  </script>
+</body>
+</html>
